@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
 {
+//用户注册
+ public function create()
+    {
+        return view('users.create');
+    }
+  
   //文件上传方法
   public function photo(){
     return view('photo');

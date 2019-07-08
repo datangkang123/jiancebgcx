@@ -11,8 +11,9 @@
 |
 */
 Route::get('/', 'StaticPagesController@home')->name('home');
-Route::get('/help', 'StaticPagesController@help')->name('help');
-Route::get('/about', 'StaticPagesController@about')->name('about');
+Route::get('help', 'StaticPagesController@help')->name('help');
+Route::get('about', 'StaticPagesController@about')->name('about');
+Route::get('signup', 'UsersController@create')->name('signup');
 
 //上传excel控制器
 Route::get('photo', 'UsersController@photo');
