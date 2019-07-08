@@ -65,7 +65,8 @@ public function upload(Request $request){
 		$va = $data;
       if (Schema::hasTable($tmp))
 {
-  echo '数据表已存在，请先删除再上传！<br>';        
+  echo '数据表已存在，请先删除再上传！<br>';
+  //Schema::dropIfExists($tmp);//删除数据表
 }else{
 		Schema::create($tmp, function(Blueprint $table) use ($tmp,$va)
   //create 方法会接收两个参数：一个是数据表的名称，另一个则是接收 $table（Blueprint 实例）的闭包。    
@@ -86,12 +87,15 @@ public function upload(Request $request){
 		$id = 1;
 		foreach($va as $key => $value){
 			if($key != 0){
- 
-				$content = implode(",",$value);
-				$content2 = explode(",",$content);
-				foreach ( $content2 as $key => $val ) {
-					$value_str[] = "'$val'";
-				}
+            foreach($value as $zdnr){//批量替换里面的值
+                   $zdnr = preg_replace('/\r|\n/', '', $zdnr);//去除换行
+		  		   $zdnr = str_replace(" ",'',$zdnr);//去除空格
+				   $zdnr = str_replace("'",'',$zdnr);//去除单引号
+				   $zdnr = str_replace(",",'',$zdnr);//去除,号
+				   $zdnr = str_replace("，",'',$zdnr);//去除，号
+                   $value_str[] = "'$zdnr'";
+            }  
+               //dd($value_str);
 				$news = implode(",",$value_str);
 				$news = "$id,".$news;
 				DB::insert("insert into $tmp values ($news)");
