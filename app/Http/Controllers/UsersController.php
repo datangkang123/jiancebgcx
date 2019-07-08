@@ -10,13 +10,19 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\DB;
+use App\User;
 
 class UsersController extends Controller
 {
 //用户注册
- public function create()
+    public function create()
     {
         return view('users.create');
+    }
+
+    public function show(User $user)
+    {
+        return view('users.show', compact('user'));
     }
   
   //文件上传方法
