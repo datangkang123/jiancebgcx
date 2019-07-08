@@ -63,10 +63,10 @@ public function upload(Request $request){
 	{
 		$tmp = $sjkm;
 		$va = $data;
+        Schema::dropIfExists($tmp);//测试环境，先删除同名数据表
       if (Schema::hasTable($tmp))
 {
   echo '数据表已存在，请先删除再上传！<br>';
-  //Schema::dropIfExists($tmp);//删除数据表
 }else{
 		Schema::create($tmp, function(Blueprint $table) use ($tmp,$va)
   //create 方法会接收两个参数：一个是数据表的名称，另一个则是接收 $table（Blueprint 实例）的闭包。    
