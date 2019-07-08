@@ -24,7 +24,7 @@ class UsersController extends Controller
     {
         return view('users.show', compact('user'));
     }
-  //用户写入数据库
+
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -39,6 +39,7 @@ class UsersController extends Controller
             'password' => bcrypt($request->password),
         ]);
 
+        Auth::login($user);
         session()->flash('success', '欢迎，您将在这里开启一段新的旅程~');
         return redirect()->route('users.show', [$user]);
     }
