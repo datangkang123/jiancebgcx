@@ -24,7 +24,7 @@ class UsersController extends Controller
     {
         return view('users.show', compact('user'));
     }
-
+  //用户写入数据库
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -32,8 +32,17 @@ class UsersController extends Controller
             'email' => 'required|email|unique:users|max:255',
             'password' => 'required|confirmed|min:6'
         ]);
-        return;
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+        ]);
+
+        session()->flash('success', '欢迎，您将在这里开启一段新的旅程~');
+        return redirect()->route('users.show', [$user]);
     }
+  
   
   //文件上传方法
   public function photo(){
