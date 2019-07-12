@@ -18,12 +18,17 @@ class UsersController extends Controller
     public function __construct()
     {
         $this->middleware('auth', [
-            'except' => ['show', 'create', 'store']
+            'except' => ['show', 'create', 'store', 'index'] //新增 index 动作来允许游客访问
         ]);
 //只让未登录用户访问注册页面
         $this->middleware('guest', [
             'only' => ['create']
         ]);
+    }
+      public function index()
+    {
+        $users = User::paginate(10);//分页，获取10条
+        return view('users.index', compact('users'));
     }
 //用户注册
     public function create()
