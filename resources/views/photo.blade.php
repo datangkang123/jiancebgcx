@@ -10,10 +10,10 @@
       一切，将从这里开始。
     </p>
     <p>
-<form action="/upload" method="post" accept=".xls,.xlsx" enctype="multipart/form-data">
+<form action="/upload" method="post" enctype="multipart/form-data">
         {{csrf_field()}}
         <p>
-            <input type="file" name="excel" id="excel">
+            <input type="file" name="excel" accept=".xls,.xlsx"  id="excel">
         </p>
         <p>
             <input type="submit" value="提交">

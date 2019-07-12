@@ -11,9 +11,20 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\DB;
 use App\User;
+use Auth;
 
 class UsersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', [
+            'except' => ['show', 'create', 'store']
+        ]);
+//只让未登录用户访问注册页面
+        $this->middleware('guest', [
+            'only' => ['create']
+        ]);
+    }
 //用户注册
     public function create()
     {
@@ -43,12 +54,15 @@ class UsersController extends Controller
         session()->flash('success', '欢迎，您将在这里开启一段新的旅程~');
         return redirect()->route('users.show', [$user]);
     }
+  
     public function edit(User $user)
     {
+        $this->authorize('update', $user);//进行授权验证
         return view('users.edit', compact('user'));
     }
     public function update(User $user, Request $request)
     {
+       $this->authorize('update', $user);//进行授权验证
         $this->validate($request, [
             'name' => 'required|max:50',
             'password' => 'nullable|confirmed|min:6'
