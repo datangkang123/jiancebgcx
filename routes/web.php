@@ -11,7 +11,6 @@
 |
 */
 Route::get('/', 'StaticPagesController@home')->name('home');
-Route::get('help', 'StaticPagesController@help')->name('help');
 Route::get('about', 'StaticPagesController@about')->name('about');
 Route::get('signup', 'UsersController@create')->name('signup');
 Route::resource('users', 'UsersController');
@@ -25,6 +24,6 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
 
 //上传excel控制器
-Route::get('photo', 'UsersController@photo');
+Route::get('uploadexcel', 'UploadExcel@uploadexcel')->name('uploadexcel');
 //处理上传excel控制器
-Route::post('upload', 'UsersController@upload');
+Route::post('upload', 'UploadExcel@upload')->name('upload');

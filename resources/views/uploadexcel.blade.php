@@ -10,8 +10,16 @@
     <p>1. 请勿将本系统用于政策法规不允许的用途；</p>
     <p>2. 使用本系统请注意隐私保护；</p>
     <p>3. 请用于本单位的查询，切勿冒充其他单位发布查询。 </p>
-      <p>
-      <a class="btn btn-lg btn-success" href="{{ route('uploadexcel') }}" role="button">上传excel</a>
-    </p>
+<br>
+<form action="{{ route('upload') }}" method="post" enctype="multipart/form-data">
+        {{csrf_field()}}
+        <p>
+            <input type="file" name="excel" accept=".xls,.xlsx"  id="excel" required="required">
+        </p>
+        <p>
+            <input type="submit" class="btn  btn-success" value="上 传">
+        </p>
+</form>
+    
   </div>
 @stop
