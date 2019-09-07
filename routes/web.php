@@ -23,6 +23,9 @@ Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail'
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
 
+Route::post('/cxjg', 'StaticPagesController@cxjg')->name('cxjg');//查询结果
+Route::get('/yzm', 'StaticPagesController@yzm')->name('yzm');//验证码
+
 //上传excel控制器
 Route::get('uploadexcel', 'UploadExcel@uploadexcel')->name('uploadexcel');
 //处理上传excel控制器
