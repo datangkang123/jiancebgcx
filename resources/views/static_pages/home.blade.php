@@ -15,15 +15,14 @@
 
         <div class="form-group">
           <label for="name">手机号或合同编号：</label>
-          <input type="text" name="shuru1" required="required" class="form-control" value="{{ old('shuru1') }}"> </div>
+          <input type="text" name="shuru1" required="required" class="form-control" placeholder="输入手机号或合同编号" value="{{ old('shuru1') }}"> </div>
         <div class="form-group">  
 	<label  for="code">验证码（区分大小写）：</label>
-    <input  type="text" name="code" id="textfield" class="form-control"/>
-    <img  id="imgcode" src="{{ route('yzm') }}" alt="验证码" />
+    <input  type="text" name="code" id="textfield" class="form-control" placeholder="输入验证码"/>
+    <br><img  id="imgcode" src="{{ route('yzm') }}" alt="验证码" />
           <a  href="javascript:refresh_code()">看不清？换一个</a>
         </div>
-        
-        <center><button type="submit" class="btn btn-primary">查 询</button></center>
+        <br><center><button type="submit" class="btn btn-primary">查  询</button></center>
       </form>
     </div>
   </div>
