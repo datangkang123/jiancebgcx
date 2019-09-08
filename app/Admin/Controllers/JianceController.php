@@ -84,6 +84,7 @@ class JianceController extends Controller
         //$grid->id('ID');
         $grid->bianhao('手机号或合同编号');
 		$grid->pictures('扫描图片')->image();
+		$grid->beizhu('备注');
         $grid->created_at('创建时间');
         $grid->updated_at('更新时间');
         $grid->quickSearch('bianhao');//快捷搜索
@@ -105,6 +106,7 @@ class JianceController extends Controller
         //$show->id('ID');
         $show->bianhao('手机号或合同编号');
         $show->pictures('扫描图片')->image();
+        $show->beizhu('备注');
         $show->created_at('创建时间');
         $show->updated_at('更新时间');
 
@@ -122,7 +124,8 @@ class JianceController extends Controller
 
         //$form->display('ID');
         $form->text('bianhao', '手机号或合同编号')->required();
-        $form->multipleImage('pictures', '扫描图片')->removable()->required()->sortable();//按住ctrl选择多图上传
+        $form->multipleImage('pictures', '扫描图片')->removable()->sortable();//按住ctrl选择多图上传
+        $form->text('beizhu', '备注');
         $form->display('Created at','创建时间');
         $form->display('Updated at','更新时间');
         $form->disableReset(); //关闭撤销键
