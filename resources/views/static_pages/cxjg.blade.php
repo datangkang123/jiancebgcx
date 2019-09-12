@@ -1,29 +1,29 @@
 @extends('layouts.default')
 @section('title', '查询结果')
-
+@php
+$img = '';
+@endphp
 @section('content')
 <div class="offset-md-0 col-md-12">
   <div class="card ">
-    <div class="card-header"><center><h5><b class="text-danger">查询到{{count($cxjgs)}}条，编号：{{$cxjgs[0]->bianhao}}</b> &nbsp&nbsp&nbsp&nbsp （备注：{{$cxjgs[0]->beizhu}}）</h5></center></div>
-    <div >
       @include('shared._errors')
 
 @if (count($cxjgs) === 0)
-      <br><h6>没有查询到数据，请检查输入是否正确</h6>
+      <br><h5 class="text-center">没有查询到数据，请检查输入是否正确</h5>
 @else
- 
-  <img id='images' width='100%' alt="" src="" class="img-responsive">
-    @php
+     @php
         $img = $cxjgs[0]->pictures;
-        $data = json_decode($img, true);
     @endphp
-@endif
-     <center>
+    <div class="card-header"><center><h5><b class="text-danger">查询到{{count($cxjgs)}}条，编号：{{$cxjgs[0]->bianhao}}</b> &nbsp&nbsp&nbsp&nbsp （备注：{{$cxjgs[0]->beizhu}}）</h5></center></div>
+    <div >
+  <img id='images' width='100%' alt="" src="" class="img-responsive">
+       <center>
      <p id='picnum'class="text-center"></p>  
      <button type="button" id="last" class="btn btn-primary">上一页</button>&nbsp&nbsp&nbsp&nbsp
      <button type="button" id="next" class="btn btn-primary">下一页</button>
       </center>
       <br>
+@endif
     </div>
   </div>
 </div>
@@ -31,6 +31,7 @@
 <script>
   $(document).ready(function(){
 	var pictures = '<?php echo $img; ?>';
+	if (pictures !== ''){
 	var img = JSON.parse(pictures);
      console.log(img);
 	var i = 0;
@@ -82,7 +83,7 @@
     $("#last").removeAttr("disabled");//将按钮可用
     }
 	});
-    
+	}
  });
 </script>
 @stop
